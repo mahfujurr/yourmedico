@@ -43,7 +43,7 @@ const Header = () => {
                             <Link to='/blog' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">Blog</Link>
                         </li>
                         <li className="flex">
-                            <Link to='/nothing' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">Link</Link>
+                            <Link to='/myreview' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">My Review</Link>
                         </li>
                     </ul>
                 {/* sign up and sign in  */}
