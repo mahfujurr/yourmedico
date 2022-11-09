@@ -1,11 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
-import useTitle from '../../Hooks/useTitle';
+import { Link } from 'react-router-dom';
 
-const Service = ({ service }) => {
-    useTitle('Services')
+const HomeService = ({ service }) => {
     const { _id, name, details, picture, price } = service;
     console.log(service);
     return (
@@ -40,4 +37,4 @@ const Service = ({ service }) => {
     );
 };
 
-export default Service;
+export default HomeService;

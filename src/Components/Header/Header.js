@@ -45,6 +45,9 @@ const Header = () => {
                         <li className="flex">
                             <Link to='/myreview' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">My Review</Link>
                         </li>
+                        <li className="flex">
+                            <Link to='/addservice' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">Add Services</Link>
+                        </li>
                     </ul>
                 {/* sign up and sign in  */}
 
