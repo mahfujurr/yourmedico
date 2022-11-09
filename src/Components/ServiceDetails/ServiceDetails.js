@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const ServiceDetails = () => {
+    const { user } = useContext(AuthContext);
     const serviceDetails = useLoaderData();
-    const { picture, price, details, name } = serviceDetails;
-    console.log(serviceDetails);
+    const { picture, price, details, name, _id } = serviceDetails;
+    // console.log(serviceDetails);
 
+    // const handleInputBlur = e => {
 
+    // }
 
 
     const [review, setReview] = useState({});
@@ -16,35 +20,43 @@ const ServiceDetails = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const form = e.target;
+
+        const email = user?.email || 'unregistered';
+        const reviewMessage = form.reviewmsg.value;
+
+        const reviewDetails = {
+            id: _id,
+            serviceName: name,
+            customer: user.displayName,
+            email,
+            reviewMessage
+        }
+        // console.log(reviewDetails);
+
+
+        // const newReview = { ...review }
+        // reviewDetails = newReview;
+
+        setReview(reviewDetails);
+
         console.log(review);
 
-        fetch('http://localhost:5000/review',{
+        fetch('http://localhost:5000/myreview', {
             method: 'POST',
-            headers:{
-                'content-type' : 'application/json'
+            headers: {
+                'content-type': 'application/json'
             },
             body: JSON.stringify(review)
         })
-        .then(res=> res.json())
-        .then(data => {
-            console.log(data)
-        })
-
-
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                form.reset();
+            })
     }
-    const handleInputBlur = e => {
-        const field = e.target.name;
-        const value = e.target.value;
-        const newReview = { ...review }
-        newReview[field] = value;
-        setReview(newReview);
-    }
-
-
-
-
-
     return (
+
         // service details 
         <div className='bg-cyan-100 flex flex-col justify-center items-center'>
             <div className="p-5 mx-auto sm:p-10 md:p-16  text-gray-100">
@@ -81,26 +93,28 @@ const ServiceDetails = () => {
                         <span className="text-center">How was your experience?</span>
 
                     </div>
-                    <div className="flex flex-col w-full">
-                        <textarea rows="3" placeholder="Message..." className="p-4 rounded-md resize-none text-cyan-900 bg-white" spellcheck="false" data-ms-editor="true"></textarea>
-                        <button type="button" className="py-4 my-8 font-semibold rounded-md text-cyan-900 bg-cyan-400">Leave feedback</button>
-                    </div>
+
+                    {/* review form  */}
+
+                    <form onSubmit={handleSubmit} className="flex flex-col w-full">
+                        <input rows="3"  type="text" placeholder='Write a review...' name='reviewmsg' className="p-4 rounded-md resize-none text-cyan-900 bg-white" />
+                        
+                        <button type="submit" className="py-4 my-8 font-semibold rounded-md text-cyan-900 bg-cyan-400">Leave feedback</button>
+                    </form>
+
                 </div>
-                <div className="flex items-center justify-center">
-                    <button className="text-sm text-gray-400">Maybe later</button>
-                </div>
+                
             </div>
-            
+
 
             {/* add revirews  */}
 
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
                 <h1>Add user</h1>
-                <input onBlur={handleInputBlur} type="text" placeholder='name' name='name' />
-                <input onBlur={handleInputBlur} type="email" placeholder='email' name='email' />
-                <input onBlur={handleInputBlur} type="text" placeholder='email' name='username' />
+                <input type="text" placeholder='Write a review...' name='reviewmsg' />
+
                 <button type='submit'>Add user</button>
-            </form>
+            </form> */}
 
 
         </div>
