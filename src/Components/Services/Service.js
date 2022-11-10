@@ -23,7 +23,7 @@ const Service = ({ service }) => {
                 <div className="flex flex-col justify-between p-6 space-y-6">
                     <div className="space-y-2">
                         <h2 className="text-3xl text-cyan-900 font-semibold tracking-wide">{name}</h2>
-                        <p className="dark:text-gray-100 text-black/80">{details.length > 150 ? details.slice(0, 150) + '...' : details}</p>
+                        <p className="dark:text-gray-100 text-black/80">{details.length > 150 ? details.slice(0, 100) + '...' : details}</p>
                     </div>
                     {/* <p>
                         Rating: {rating}

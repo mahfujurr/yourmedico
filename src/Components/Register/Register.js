@@ -6,11 +6,12 @@ import useTitle from '../../Hooks/useTitle';
 
 const Register = () => {
     useTitle('Register')
-    const {createUser, loading, googleLogin} = useContext(AuthContext);
+    const { createUser, loading, googleLogin, updateCurrentProfile } = useContext(AuthContext);
     const gProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+
     const handleGoogleSign = () => {
         googleLogin(gProvider)
             .then((result) => {
@@ -21,37 +22,65 @@ const Register = () => {
                 fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
-                        'content-type' : 'application/json'
+                        'content-type': 'application/json'
                     },
                     body: JSON.stringify(currentUser)
                 })
-                .then(res=> res.json())
-                .then(data=> {
-                    console.log(data)
-                    localStorage.setItem('token', data.token);
-                    navigate(from, { replace: true });
-                })
-                // navigate(from, { replace: true });
-                
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    })
 
             }).catch((error) => {
                 console.log(error)
 
             });
     }
-    const handleSignUp = event =>{
+    const handleSignUp = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        
+        const name = form.name.value;
+        const photoURL = form.photourl.value;
+
         createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(err => console.error(err));
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                handleUserInfoUpdate(name, photoURL);
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    })
+            })
+            .catch(err => console.error(err));
     }
+    const handleUserInfoUpdate = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+
+        }
+        updateCurrentProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
+    }
+
     if (loading) {
         return <div className="flex items-center justify-center space-x-2">
             <div className="w-4 h-4 rounded-full animate-pulse bg-cyan-400"></div>
@@ -68,13 +97,21 @@ const Register = () => {
 
                 <form onSubmit={handleSignUp} className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
-                        <label  className="block text-cyan-400">Email</label>
-                        <input type="email" name="email"  placeholder="email" className="w-full px-4 py-3 rounded-md border-cyan-700 bg-cyan-900 text-cyan-100 focus:border-violet-400" />
+                        <label className="block text-cyan-400">Name</label>
+                        <input type="text" name="name" placeholder="email" className="w-full px-4 py-3 rounded-md border-cyan-700 bg-cyan-900 text-cyan-100 focus:border-violet-400" />
                     </div>
                     <div className="space-y-1 text-sm">
-                        <label  className="block text-cyan-400">Password</label>
-                        <input type="password" name="password"  placeholder="Password" className="w-full px-4 py-3 rounded-md border-cyan-700 bg-cyan-900 text-cyan-100 focus:border-violet-400" />
-                        
+                        <label className="block text-cyan-400">PhotoURL</label>
+                        <input type="text" name="photourl" placeholder="email" className="w-full px-4 py-3 rounded-md border-cyan-700 bg-cyan-900 text-cyan-100 focus:border-violet-400" />
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label className="block text-cyan-400">Email</label>
+                        <input type="email" name="email" placeholder="email" className="w-full px-4 py-3 rounded-md border-cyan-700 bg-cyan-900 text-cyan-100 focus:border-violet-400" />
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label className="block text-cyan-400">Password</label>
+                        <input type="password" name="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border-cyan-700 bg-cyan-900 text-cyan-100 focus:border-violet-400" />
+
                     </div>
                     <button type="submit" className="block w-full p-3 text-center rounded-sm text-cyan-900 bg-cyan-300 font-semibold">Register</button>
                 </form>

@@ -32,7 +32,7 @@ const EditReview = () => {
     
     return (
         <div>
-            this is update and tahe name is {storedReview.name}
+            this is update and the name is {storedReview.name}
             <form onSubmit={handleUpdateUser}>
                 <h1>Add user</h1>
                 <input onChange={handleInputChange} defaultValue={storedReview.name} type="text" placeholder='' name='reviewMessage' />

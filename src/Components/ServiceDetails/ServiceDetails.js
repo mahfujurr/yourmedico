@@ -17,13 +17,15 @@ const ServiceDetails = () => {
         const form = e.target;
         const email = user?.email || 'unregistered';
         const reviewMessage = form.value;
+        const photoUser = user.photoURL;
         const reviewDetails = {
             id: _id,
             serviceName: name,
             customer: user.displayName,
             email,
             reviewMessage,
-            time: Date.now()
+            time: Date.now(),
+            photoUser
         }
         setReview(reviewDetails);
         // form.reset();
@@ -76,11 +78,11 @@ const ServiceDetails = () => {
                             <p className='font-bold text-cyan-900 text-2xl pt-2 pb-5'>
                                 Price: {price}
                             </p>
-                            
+
                             <p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
                                 {details}
                             </p>
-                            
+
 
                         </div>
                     </div>
@@ -89,6 +91,15 @@ const ServiceDetails = () => {
 
 
             {/* review section */}
+
+
+
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-10'>
+                {
+                    addedReview.map(rvw => <Opinions key={rvw._id} rvw={rvw}></Opinions>)
+                }
+            </div>
+
 
             {
                 user?.email ?
@@ -112,9 +123,7 @@ const ServiceDetails = () => {
 
                     </div> : <p className='mb-10 text-2xl border-2 p-3 rounded-2xl border-black'>Please <Link to='/login' className="text-blue-600 " >login</Link> to give a review!</p>
             }
-            {
-                addedReview.map(rvw => <Opinions key={rvw._id} rvw={rvw}></Opinions>)
-            }
+
 
 
         </div>
