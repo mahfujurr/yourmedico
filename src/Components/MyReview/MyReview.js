@@ -21,7 +21,7 @@ const MyReview = () => {
     return (
         <div>
             {
-                myReviews.map(reviews => <Review reviews={reviews}></Review> )
+                myReviews.map(reviews => <Review key={reviews._id} reviews={reviews}></Review> )
             }
             
         </div>
