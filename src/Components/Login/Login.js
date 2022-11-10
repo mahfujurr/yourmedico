@@ -6,7 +6,7 @@ import useTitle from '../../Hooks/useTitle';
 
 const Login = () => {
     useTitle('Login');
-    const { login, googleLogin } = useContext(AuthContext);
+    const { login, googleLogin, loading } = useContext(AuthContext);   
     const gProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
@@ -15,7 +15,23 @@ const Login = () => {
         googleLogin(gProvider)
             .then((result) => {
                 const user = result.user;
-                navigate(from, { replace: true });
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type' : 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                .then(res=> res.json())
+                .then(data=> {
+                    console.log(data)
+                    localStorage.setItem('token', data.token);
+                    navigate(from, { replace: true });
+                })
+                // navigate(from, { replace: true });
                 
 
             }).catch((error) => {
@@ -33,11 +49,34 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                form.reset();
-                navigate(from, { replace: true });
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser);
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type' : 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                .then(res=> res.json())
+                .then(data=> {
+                    console.log(data)
+                    localStorage.setItem('token', data.token);
+                    navigate(from, { replace: true });
+                })
+                form.reset();               
             })
             .catch(error => console.log(error));
+    }
+    if (loading) {
+        return <div className="flex items-center justify-center space-x-2">
+            <div className="w-4 h-4 rounded-full animate-pulse bg-cyan-400"></div>
+            <div className="w-4 h-4 rounded-full animate-pulse bg-cyan-400"></div>
+            <div className="w-4 h-4 rounded-full animate-pulse bg-cyan-400"></div>
+        </div>
     }
     return (
         <div className=' flex w-full justify-center items-center mt-5'>

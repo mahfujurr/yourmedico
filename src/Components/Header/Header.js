@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import navImage from '../../assets/yourmedico.jpg'
 
 const Header = () => {
     const { user, logOutUser } = useContext(AuthContext);
@@ -30,9 +31,13 @@ const Header = () => {
         <div>
             <header className="p-4 bg-cyan-200 dark:bg-gray-800 dark:text-gray-100">
                 <div className="container flex justify-between items-center h-5 mx-auto">
+                    <div className='flex justify-center items-center'>
+                        <img className='w-10' src="https://cdn-icons-png.flaticon.com/512/458/458073.png" alt="" />
+                        <h1 className='text-2xl font-bold text-cyan-900 ml-2'>Your Medico</h1>
+                    </div>
 
                 {/* links  */}
-                    <ul className="items-stretch hidden space-x-3 lg:flex">
+                    <ul className="items-stretch  space-x-3 lg:flex font-semibold">
                         <li className="flex">
                             <Link to='/' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent ">Home</Link>
                         </li>

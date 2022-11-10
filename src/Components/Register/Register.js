@@ -5,7 +5,7 @@ import useTitle from '../../Hooks/useTitle';
 
 const Register = () => {
     useTitle('Register')
-    const {createUser} = useContext(AuthContext);
+    const {createUser, loading} = useContext(AuthContext);
     const handleSignUp = event =>{
         event.preventDefault();
         const form = event.target;
@@ -18,6 +18,13 @@ const Register = () => {
             console.log(user);
         })
         .catch(err => console.error(err));
+    }
+    if (loading) {
+        return <div className="flex items-center justify-center space-x-2">
+            <div className="w-4 h-4 rounded-full animate-pulse bg-cyan-400"></div>
+            <div className="w-4 h-4 rounded-full animate-pulse bg-cyan-400"></div>
+            <div className="w-4 h-4 rounded-full animate-pulse bg-cyan-400"></div>
+        </div>
     }
     return (
         <div className=' flex w-full justify-center items-center mt-5'>
