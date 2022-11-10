@@ -30,16 +30,16 @@ const AddServices = () => {
         setService(newService);
     }
     return (
-        <div className='flex flex-col justify-center items-center w-full'>
+        <div className='flex flex-col justify-center items-center w-full my-10'>
             <form onSubmit={handleAddServices} class=" w-full max-w-lg">
 
                 {/* service name input  */}
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full  px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                    <div className="w-full  px-3 mb-6 md:mb-0">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Service Name
                         </label>
-                        <input onBlur={handleInputBlur} name="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="enter service name here..." />
+                        <input onBlur={handleInputBlur} name="name" className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="enter service name here..." />
                     </div>
 
                 </div>
@@ -47,40 +47,40 @@ const AddServices = () => {
 
                 {/* service details input  */}
 
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                    <div className="w-full px-3">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Details of your service
                         </label>
-                        <input onBlur={handleInputBlur} name='details' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="enter service details here" />
+                        <input onBlur={handleInputBlur} name='details' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="enter service details here" />
                     </div>
                 </div>
 
 
                 {/* service price  */}
 
-                <div class="flex flex-wrap -mx-3 mb-2">
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <div className="flex flex-wrap -mx-3 mb-2">
+                    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Price
                         </label>
-                        <input onBlur={handleInputBlur} name='price' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="$00" />
+                        <input onBlur={handleInputBlur} name='price' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="$00" />
                     </div>
 
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Rating
                         </label>
-                        <input onBlur={handleInputBlur} name='rating' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="5.0" />
+                        <input onBlur={handleInputBlur} name='rating' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="5.0" />
                     </div>
                 </div>
 
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                    <div className="w-full px-3">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Service picture URL
                         </label>
-                        <input onBlur={handleInputBlur} name='picture' class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="'https://www.image.com'" />
+                        <input onBlur={handleInputBlur} name='picture' className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="'https://www.image.com'" />
                     </div>
                 </div>
 
