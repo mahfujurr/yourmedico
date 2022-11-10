@@ -5,7 +5,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import useTitle from '../../Hooks/useTitle';
 
 const Service = ({ service }) => {
-    useTitle('Services')
+    useTitle('Services - Your Medico')
     const { _id, name, details, picture, price } = service;
     console.log(service);
     return (

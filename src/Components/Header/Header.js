@@ -4,7 +4,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const Header = () => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const { user, logOutUser } = useContext(AuthContext);
     const handleLogout = () => {
         logOutUser()
@@ -34,7 +34,7 @@ const Header = () => {
                 <div className=" py-1 flex justify-between items-center">
                     <div className='flex justify-center items-center pl-10'>
                         <img className='w-10' src="https://cdn-icons-png.flaticon.com/512/458/458073.png" alt="" />
-                        <h1 className='text-2xl font-bold text-cyan-900 ml-2'>Your Medico</h1>
+                        <Link to='/' className='text-2xl font-bold text-cyan-900 ml-2'>Your Medico</Link>
                     </div>
 
                     {/* links  */}

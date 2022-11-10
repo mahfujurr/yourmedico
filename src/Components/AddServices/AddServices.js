@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../../Hooks/useTitle';
 
 const AddServices = () => {
+    useTitle('Add Services - Your Medico')
     const [service, setService] = useState({});
     // console.log(service)
     const handleAddServices = (e) => {
@@ -19,6 +23,7 @@ const AddServices = () => {
         .then(data => {
             console.log(data)
         })
+        toast.success('Service added successfully');
 
     }
     

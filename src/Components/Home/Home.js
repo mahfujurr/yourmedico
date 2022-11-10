@@ -4,7 +4,7 @@ import useTitle from '../../Hooks/useTitle';
 import HomeService from './HomeService';
 
 const Home = () => {
-    useTitle('Your Medico')
+    useTitle('Home - Your Medico')
     const services = useLoaderData();
     // console.log(services)
     return (
@@ -24,7 +24,7 @@ const Home = () => {
 
                 <img className="rounded-2xl w-full object-cover lg:w-1/2 " src="https://images.unsplash.com/photo-1626736903650-2289a3b32ed8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1524&q=80" alt="" />
 
-                <div className='w-full lg:w-1/2 bg-cyan-50 px-5 rounded-2xl mx-10 text-center '>
+                <div className='w-full lg:w-1/2 bg-cyan-50 px-5 rounded-2xl lg:mx-10 text-center '>
                     <h1 className='text-5xl  py-10  font-bold text-cyan-900'>
                         I'll will be your dentist for keep your smile
                     </h1>

@@ -4,6 +4,8 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../Context/AuthProvider';
 import Opinions from '../Opinions/Opinions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext);
@@ -11,7 +13,6 @@ const ServiceDetails = () => {
     const { picture, price, details, name, _id } = serviceDetails;
     const [review, setReview] = useState({});
     const [addedReview, setAddedReview] = useState([]);
-
 
     const handleInputBlur = e => {
         const form = e.target;
@@ -28,16 +29,11 @@ const ServiceDetails = () => {
             photoUser
         }
         setReview(reviewDetails);
-        // form.reset();
+
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-
-
-        console.log(review);
-
         fetch('https://your-medico-server.vercel.app/myreview', {
             method: 'POST',
             headers: {
@@ -46,10 +42,8 @@ const ServiceDetails = () => {
             body: JSON.stringify(review)
         })
             .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-
-            })
+            .then(data => console.log(data))
+        toast.success('Thanks for your review');
     }
 
     // review data for showing review  
@@ -57,7 +51,7 @@ const ServiceDetails = () => {
         fetch(`https://your-medico-server.vercel.app/myreview/${_id}`)
             .then(res => res.json())
             .then(data => setAddedReview(data))
-    }, [])
+    }, [_id])
 
 
     return (
@@ -71,8 +65,11 @@ const ServiceDetails = () => {
 
 
                     <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
-                        <img className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src={picture} alt="" />
-
+                        <PhotoProvider>
+                            <PhotoView src={picture}>
+                                <img className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src={picture} alt="" />
+                            </PhotoView>
+                        </PhotoProvider>
                         <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
                             <h1 className="text-3xl font-semibold text-cyan-900 capitalize lg:text-4xl dark:text-white">{name}</h1>
                             <p className='font-bold text-cyan-900 text-2xl pt-2 pb-5'>

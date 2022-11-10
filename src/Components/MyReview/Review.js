@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Review = ({ reviews }) => {
     // console.log(reviews);
@@ -15,7 +17,7 @@ const Review = ({ reviews }) => {
             .then(data => {
                 console.log(data)
                 if (data.deletedCount > 0) {
-                    alert('User deleted successfully');
+                    toast.success('Review deleted successfully');
                 }
             })
 

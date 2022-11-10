@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditReview = () => {
     const storedReview = useLoaderData();
@@ -20,7 +22,8 @@ const EditReview = () => {
             .then(data => {
                 console.log(data)
             })
-        console.log(review)
+
+        toast.success('Review updated');
     }
     const handleInputChange = e => {
         const field = e.target.name;

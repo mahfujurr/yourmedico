@@ -8,6 +8,7 @@
         "photourl",
         "reviewmsg",
         "setreview",
+        "toastify",
         "yourmedico"
     ]
 }
