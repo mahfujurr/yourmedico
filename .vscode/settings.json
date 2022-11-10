@@ -1,7 +1,11 @@
 {
     "cSpell.words": [
         "addservice",
+        "addservices",
+        "editreview",
         "myreview",
-        "reviewmsg"
+        "newreview",
+        "reviewmsg",
+        "setreview"
     ]
 }

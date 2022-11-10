@@ -1,6 +1,9 @@
+import AddServices from '../Components/AddServices/AddServices';
 import Blog from '../Components/Blog/Blog';
 import Home from '../Components/Home/Home';
 import Login from '../Components/Login/Login';
+import EditReview from '../Components/MyReview/EditReview/EditReview';
+import MyReview from '../Components/MyReview/MyReview';
 import Register from '../Components/Register/Register';
 import ServiceDetails from '../Components/ServiceDetails/ServiceDetails';
 import Services from '../Components/Services/Services';
@@ -32,6 +35,22 @@ const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog></Blog>
             },
+            {
+                path: '/addservices',
+                element: <PrivateRoute><AddServices></AddServices></PrivateRoute>
+            },
+
+            {
+                path: '/myreview/user/:email',
+                element: <PrivateRoute><MyReview></MyReview></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/myreview/user/${params.email}`)
+            },
+            {
+                path:'/editreview/:id',
+                element: <PrivateRoute><EditReview></EditReview></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`)
+            },
+
             {
                 path: '/services',
                 element: <Services></Services>,
