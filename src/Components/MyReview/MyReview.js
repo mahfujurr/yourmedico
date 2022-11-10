@@ -9,7 +9,7 @@ const MyReview = () => {
     const { user } = useContext(AuthContext); 
     // console.log(myReviews );
     useEffect(()=>{
-        fetch(`http://localhost:5000/myreview/user/${user?.email}`, {
+        fetch(`https://your-medico-server.vercel.app/myreview/user/${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`
             }

@@ -9,7 +9,7 @@ const EditReview = () => {
         e.preventDefault();
 
         // console.log(user);
-        fetch(`http://localhost:5000/review/${storedReview._id}`, {
+        fetch(`https://your-medico-server.vercel.app/review/${storedReview._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

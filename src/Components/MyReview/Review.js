@@ -7,7 +7,7 @@ const Review = ({ reviews }) => {
     const { customer, reviewMessage, _id, photoUser } = reviews;
     const handleDelete = () => {
 
-        fetch(`http://localhost:5000/myreview/${_id}`, {
+        fetch(`https://your-medico-server.vercel.app/myreview/${_id}`, {
             method: 'DELETE',
 
         })

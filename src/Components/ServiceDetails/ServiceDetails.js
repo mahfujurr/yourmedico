@@ -38,7 +38,7 @@ const ServiceDetails = () => {
 
         console.log(review);
 
-        fetch('http://localhost:5000/myreview', {
+        fetch('https://your-medico-server.vercel.app/myreview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -54,7 +54,7 @@ const ServiceDetails = () => {
 
     // review data for showing review  
     useEffect(() => {
-        fetch(`http://localhost:5000/myreview/${_id}`)
+        fetch(`https://your-medico-server.vercel.app/myreview/${_id}`)
             .then(res => res.json())
             .then(data => setAddedReview(data))
     }, [])

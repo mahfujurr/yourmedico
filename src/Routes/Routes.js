@@ -21,7 +21,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch(`http://localhost:5000/home`)
+                loader: () => fetch(`https://your-medico-server.vercel.app/home`)
             },
             {
                 path: '/login',
@@ -43,23 +43,23 @@ const router = createBrowserRouter([
             {
                 path: '/myreview/user/:email',
                 element: <PrivateRoute><MyReview></MyReview></PrivateRoute>,
-                // loader: ({params}) => fetch(`http://localhost:5000/myreview/user/${params.email}`)
+                // loader: ({params}) => fetch(`https://your-medico-server.vercel.app/myreview/user/${params.email}`)
             },
             {
                 path:'/editreview/:id',
                 element: <PrivateRoute><EditReview></EditReview></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`)
+                loader: ({params}) => fetch(`https://your-medico-server.vercel.app/review/${params.id}`)
             },
 
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: () => fetch(`http://localhost:5000/services`)
+                loader: () => fetch(`https://your-medico-server.vercel.app/services`)
             },
             {
                 path: '/services/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({params}) => fetch(`https://your-medico-server.vercel.app/services/${params.id}`)
             },
         ]
     }

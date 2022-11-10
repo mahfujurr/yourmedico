@@ -18,7 +18,7 @@ const Login = () => {
                 const currentUser = {
                     email: user.email
                 }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://your-medico-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type' : 'application/json'
@@ -54,7 +54,7 @@ const Login = () => {
                 }
                 console.log(currentUser);
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://your-medico-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type' : 'application/json'
