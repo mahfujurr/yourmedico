@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
-import navImage from '../../assets/yourmedico.jpg'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const Header = () => {
+    const [open, setOpen] = useState(false);
     const { user, logOutUser } = useContext(AuthContext);
     const handleLogout = () => {
         logOutUser()
@@ -18,47 +19,44 @@ const Header = () => {
         {
             user?.email ?
                 <>
-                    <button onClick={handleLogout} className="self-center px-8 py-3 rounded">SignOut</button>
+                    <button onClick={handleLogout} className="self-center lg:px-8 py-3 text-white font-semibold px-4 bg-cyan-900 rounded-2xl hover:bg-cyan-900/80 transition duration-300 ease-in-out">SignOut</button>
                 </>
                 :
-                <div className='items-center flex-shrink-0 hidden lg:flex'>
-                    <Link to='/login'><button className="self-center px-8 py-3 font-semibold rounded">Sign in</button></Link>
-                    <Link to='/signup'><button className="self-center px-8 py-3 border p-3 border-black/50 hover:border-white font-semibold rounded-2xl text-white bg-cyan-900 ">Join Now</button></Link>
+                <div className='items-center flex-shrink-0  lg:flex'>
+                    <Link to='/login'><button className="self-center lg:px-8 py-3 font-semibold px-4  rounded-2xl hover:bg-black/10 transition duration-300 ease-in-out">Sign in</button></Link>
+                    <Link to='/signup'><button className="self-center lg:px-8 py-3 border p-3 border-black/50 hover:border-white transition duration-300 ease-in-out font-semibold rounded-2xl text-white bg-cyan-900 ">Join Now</button></Link>
                 </div>
         }
     </>
     return (
-        <div>
-            <header className="p-4 bg-cyan-200 dark:bg-gray-800 dark:text-gray-100">
-                <div className="container flex justify-between items-center h-5 mx-auto">
-                    <div className='flex justify-center items-center'>
+        <div className=' drop-shadow-xl'>
+            <header className=" bg-cyan-200 ">
+                <div className=" py-1 flex justify-between items-center">
+                    <div className='flex justify-center items-center pl-10'>
                         <img className='w-10' src="https://cdn-icons-png.flaticon.com/512/458/458073.png" alt="" />
                         <h1 className='text-2xl font-bold text-cyan-900 ml-2'>Your Medico</h1>
                     </div>
 
-                {/* links  */}
-                    <ul className="items-stretch  space-x-3 lg:flex font-semibold">
-                        <li className="flex">
-                            <Link to='/' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent ">Home</Link>
-                        </li>
-                        <li className="flex">
-                            <Link to='/services' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">Services</Link>
-                        </li>
-                        <li className="flex">
-                            <Link to='/blog' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">Blog</Link>
-                        </li>
-                        <li className="flex">
-                            <Link to={`/myreview/user/${user?.email}`} className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">My Review</Link>
-                        </li>
-                        <li className="flex">
-                            <Link to='/addservices' className="flex items-center px-4 -mb-1 hover:border-b-2 dark:border-transparent">Add Services</Link>
-                        </li>
-                    </ul>
-                {/* sign up and sign in  */}
+                    {/* links  */}
+                    <div className={`lg:flex py-2 font-semibold  lg:py-0 text-center justify-center items-center  lg:flex-row flex-col absolute lg:static bg-cyan-200 lg:bg-black/0 w-full lg:w-auto  duration-200 ease-in ${open ? 'hidden' : 'top-[56px]'}`}>
+                        
+                            <Link to='/' className="flex items-center px-4 py-2 rounded-2xl hover:bg-black/10 transition duration-300 ease-in-out   ">Home</Link>                     
+                            <Link to='/services' className="flex items-center px-4 py-2 rounded-2xl hover:bg-black/10 transition duration-300 ease-in-out">Services</Link>                       
+                            <Link to='/blog' className="flex items-center px-4 py-2 rounded-2xl hover:bg-black/10 transition duration-300 ease-in-out">Blog</Link>                        
+                            <Link to={`/myreview/user/${user?.email}`} className="flex items-center px-4 py-2 rounded-2xl hover:bg-black/10 transition duration-300 ease-in-out">My Review</Link>                       
+                            <Link to='/addservices' className="flex items-center px-4 py-2 rounded-2xl hover:bg-black/10 transition duration-300 ease-in-out">Add Services</Link>
+                    </div>
+                    {/* sign up and sign in  */}
 
-                    <div className="">
+                    <div className="lg:pr-10 ">
                         {menuItems}
                     </div>
+
+                    <button onClick={() => setOpen(!open)} className=" h-12 flex w-12 text-white lg:hidden">
+                        {
+                            open ? <Bars3Icon /> : <XMarkIcon />
+                        }
+                    </button>
                 </div>
             </header>
         </div>

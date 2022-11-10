@@ -15,7 +15,7 @@ const Services = () => {
     }
     // console.log(services)
     return (
-        <div className='grid grid-cols-3 m-10 gap-20'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-10 gap-20'>
             {
                 services.map(service =>
                     <Service

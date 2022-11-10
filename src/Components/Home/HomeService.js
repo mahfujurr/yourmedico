@@ -7,7 +7,7 @@ const HomeService = ({ service }) => {
     console.log(service);
     return (
         <div>
-            <div className=" rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100 border border-black/10">
+            <div className=" rounded-md shadow-md  border border-black/10">
 
                 <PhotoProvider>
                     <PhotoView src={picture}>
@@ -20,7 +20,7 @@ const HomeService = ({ service }) => {
                 <div className="flex flex-col justify-between p-6 space-y-6">
                     <div className="space-y-2">
                         <h2 className="text-3xl text-cyan-900 font-semibold tracking-wide">{name}</h2>
-                        <p className="dark:text-gray-100 text-black/80">{details.length > 150 ? details.slice(0, 150) + '...' : details}</p>
+                        <p className=" text-black/80">{details.length > 150 ? details.slice(0, 150) + '...' : details}</p>
                     </div>
                     {/* <p>
                         Rating: {rating}

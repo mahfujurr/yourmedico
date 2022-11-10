@@ -23,7 +23,7 @@ const ServiceDetails = () => {
             customer: user.displayName,
             email,
             reviewMessage,
-            time:Date.now()
+            time: Date.now()
         }
         setReview(reviewDetails);
         // form.reset();
@@ -62,54 +62,55 @@ const ServiceDetails = () => {
 
         // service details 
         <div className='bg-cyan-100 flex flex-col justify-center items-center'>
-            <div className="p-5 mx-auto sm:p-10 md:p-16  text-gray-100">
-                <div className="flex flex-col w-full mx-auto overflow-hidden rounded">
 
-                    <PhotoProvider>
-                        <PhotoView src={picture}>
-                            <img src={picture} alt="" className="w-full object-cover h-96 bg-gray-500" />
-                        </PhotoView>
-                    </PhotoProvider>
+            {/* service details info  */}
+            <section className="bg-white dark:bg-gray-900 rounded-2xl my-5">
+                <div className="container px-6 pb-10 mx-auto">
 
 
+                    <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
+                        <img className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src={picture} alt="" />
 
-                    <div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-cyan-900">
-                        <div className="space-y-2">
-                            <h1 className="inline-block text-2xl font-semibold sm:text-3xl">{name}</h1>
-                            <p className="text-2xl font-semibold text-white">
+                        <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+                            <h1 className="text-3xl font-semibold text-cyan-900 capitalize lg:text-4xl dark:text-white">{name}</h1>
+                            <p className='font-bold text-cyan-900 text-2xl pt-2 pb-5'>
                                 Price: {price}
                             </p>
-                        </div>
-                        <div className="text-gray-100">
-                            <p>{details}</p>
+                            
+                            <p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                {details}
+                            </p>
+                            
+
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
 
             {/* review section */}
 
             {
-                user?.email? 
-                <div className="flex flex-col w-1/2 mx-48 p-8 shadow-sm rounded-xl lg:p-12 bg-cyan-900 text-gray-100">
-                    <div className="flex flex-col items-center w-full">
-                        <h2 className="text-3xl font-semibold text-center">Your opinion matters!</h2>
-                        <div className="flex flex-col items-center py-6 space-y-3">
-                            <span className="text-center">How was your experience?</span>
+                user?.email ?
+                    <div className="flex flex-col w-1/2 mx-48 p-8 shadow-sm rounded-xl lg:p-5 mb-5 bg-cyan-900 text-gray-100">
+                        <div className="flex flex-col items-center w-full">
+                            <h2 className="text-3xl font-semibold text-center">Your opinion matters!</h2>
+                            <div className="flex flex-col items-center py-6 space-y-3">
+                                <span className="text-center">How was your experience?</span>
+
+                            </div>
+
+                            {/* review form  */}
+
+                            <form onSubmit={handleSubmit} className="flex flex-col w-full">
+                                <input onBlur={handleInputBlur} rows="3" type="text" placeholder='Write a review...' name='reviewmsg' className="p-4 rounded-md resize-none text-cyan-900 bg-white" />
+
+                                <button type="submit" className="py-4 my-8 font-semibold rounded-md text-cyan-900 bg-cyan-400">Leave feedback</button>
+                            </form>
 
                         </div>
 
-                        {/* review form  */}
-
-                        <form onSubmit={handleSubmit} className="flex flex-col w-full">
-                            <input onBlur={handleInputBlur} rows="3" type="text" placeholder='Write a review...' name='reviewmsg' className="p-4 rounded-md resize-none text-cyan-900 bg-white" />
-
-                            <button type="submit" className="py-4 my-8 font-semibold rounded-md text-cyan-900 bg-cyan-400">Leave feedback</button>
-                        </form>
-
-                    </div>
-
-                </div> : <p className='mb-10 text-2xl border-2 p-3 rounded-2xl border-black'>Please <Link to='/login' className="text-blue-600 " >login</Link> to give a review!</p>
+                    </div> : <p className='mb-10 text-2xl border-2 p-3 rounded-2xl border-black'>Please <Link to='/login' className="text-blue-600 " >login</Link> to give a review!</p>
             }
             {
                 addedReview.map(rvw => <Opinions key={rvw._id} rvw={rvw}></Opinions>)
